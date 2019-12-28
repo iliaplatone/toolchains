@@ -1,0 +1,6 @@
+libgcc1-armel-cross: package-name-doesnt-match-sonames
+libgcc1-armel-cross binary: arch-independent-package-contains-binary-or-object
+libgcc1-armel-cross binary: non-standard-dir-in-usr
+libgcc1-armel-cross binary: shlibs-declares-dependency-on-other-package
+libgcc1-armel-cross binary: postinst-has-useless-call-to-ldconfig
+libgcc1-armel-cross binary: postrm-has-useless-call-to-ldconfig

@@ -1,0 +1,8 @@
+libc6-armhf-cross binary: non-standard-dir-in-usr
+libc6-armhf-cross binary: arch-independent-package-contains-binary-or-object
+libc6-armhf-cross binary: embedded-library
+libc6-armhf-cross binary: missing-depends-line
+libc6-armhf-cross binary: shlibs-declares-dependency-on-other-package
+libc6-armhf-cross binary: shared-lib-without-dependency-information
+libc6-armhf-cross binary: shlib-with-executable-bit
+libc6-armhf-cross binary: unstripped-binary-or-object

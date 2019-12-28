@@ -1,19 +1,26 @@
 #!/bin/bash
 
 version=$1
+crosstool=$2
+arch=$3
+instdir=$arch/gcc-$version
+suffix=$4
 
-packages="binutils binutils-common libbinutils binutils-x86-64-linux-gnu cpp-$version gcc-$version-base libc6 libcc1-0 libgcc-$version-dev libgcc1 libgmp10 libisl15 libmpfr4 libstdc++6 libmpc3 zlib1g gcc-$version g++-$version libc6"
+packages="binutils-$crosstool cpp-$version-$crosstool gcc-$version-$crosstool-base libstdc++-$version-dev-$arch$suffix libgcc1-$arch$suffix libgcc-$version-dev-$arch$suffix libc6-$arch$suffix libc6-dev-$arch$suffix linux-libc-dev-$arch$suffix gcc-$version-$crosstool g++-$version-$crosstool"
 
 mkdir -p temp
 pushd temp
-apt -qqq download $packages
+for deb in $packages; do apt -qqq download $deb; done
 file-roller -h *.deb
 popd
-mkdir -p gcc-$version
-pushd gcc-$version
-for deb in ../temp/*/; do tar zxf $deb/data.tar.gz 2>/dev/null || tar Jxf $deb/data.tar.xz 2>/dev/null; done
+mkdir -p $instdir
+pushd $instdir
+for deb in ../../temp/*/; do tar zxf $deb/data.tar.gz 2>/dev/null || tar Jxf $deb/data.tar.xz 2>/dev/null; done
 pushd usr/bin
-for file in *-$version; do sudo ln -nfs $file $( echo $file | sed -e "s/-$version//g" ); done
+for file in *$version; do sudo ln -nfs $file $( echo $file | sed -e "s/-$version//g" ); done
 popd
+rsync -ar usr/ ./
+rm -r usr/
+ln -s ./ usr
 popd
 sudo rm -r temp

@@ -1,0 +1,9 @@
+#!/bin/sh
+arch=armel
+crosstool=arm-linux-gnueabi
+version=5
+dir=`dirname $0`/$arch/gcc-$version
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$dir/lib:$dir/lib/x86_64-linux-gnu
+sudo rsync -ar $dir/$crosstool/ /usr/$crosstool/
+$dir/bin/$crosstool-g++ $@
+

@@ -1,0 +1,6 @@
+libgcc1-armhf-cross: package-name-doesnt-match-sonames
+libgcc1-armhf-cross binary: arch-independent-package-contains-binary-or-object
+libgcc1-armhf-cross binary: non-standard-dir-in-usr
+libgcc1-armhf-cross binary: shlibs-declares-dependency-on-other-package
+libgcc1-armhf-cross binary: postinst-has-useless-call-to-ldconfig
+libgcc1-armhf-cross binary: postrm-has-useless-call-to-ldconfig
